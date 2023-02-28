@@ -10,7 +10,7 @@ export default function App() {
 		if (!phrase) {
 			setList(data);
 		} else {
-			const filteredList = list.filter(({ name }) =>
+			const filteredList = data.filter(({ name }) =>
 				name.toLowerCase().includes(phrase),
 			);
 			setList(filteredList);

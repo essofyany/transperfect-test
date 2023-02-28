@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 interface ICollection {
 	items: { name: string }[];
@@ -6,8 +6,11 @@ interface ICollection {
 }
 
 export function Collection({ items, onFilter }: ICollection) {
+	const [search, setSearch] = useState('');
 	function onChange(e: ChangeEvent<HTMLInputElement>) {
-		onFilter(e.target.value.toLowerCase());
+		const value = e.target.value.toLowerCase();
+		setSearch(value);
+		onFilter(value);
 	}
 
 	return (
@@ -16,6 +19,7 @@ export function Collection({ items, onFilter }: ICollection) {
 				type='text'
 				className='p-2 border w-full rounded-md'
 				placeholder='Type something...'
+				value={search}
 				onChange={onChange}
 			/>
 			<ul className='flex flex-col gap-2 border rounded-md overflow-hidden p-2'>
